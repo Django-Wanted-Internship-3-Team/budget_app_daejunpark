@@ -1,9 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 
 
-class UserSignUpSerializer(ModelSerializer):
+class UserSignUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ("username", "password")
@@ -19,3 +19,25 @@ class UserSignUpSerializer(ModelSerializer):
         user.set_password(raw_password)
         user.save()
         return user
+
+
+class SignInRequestSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def create(self, validated_data):
+        raise NotImplementedError()
+
+    def update(self, instance, validated_data):
+        raise NotImplementedError()
+
+
+class SignInResponseSerializer(serializers.Serializer):
+    access = serializers.CharField()
+    refresh = serializers.CharField()
+
+    def create(self, validated_data):
+        raise NotImplementedError()
+
+    def update(self, instance, validated_data):
+        raise NotImplementedError()
