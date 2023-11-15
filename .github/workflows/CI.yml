@@ -14,16 +14,16 @@ jobs:
         run: docker compose build
 
       - name: Migration test database
-        run: docker compose run django poetry run python src/manage.py migrate
+        run: docker compose run django python src/manage.py migrate
 
       - name: Run isort
-        run: docker compose run django poetry run isort . --check
+        run: docker compose run django isort . --check
 
       - name: Run black
-        run: docker compose run django poetry run black . --check
+        run: docker compose run django black . --check
 
       - name: Run flake8
-        run: docker compose run django poetry run flake8
+        run: docker compose run django flake8
 
       - name: Run Test
-        run: docker compose run django poetry run python3 src/manage.py test src
+        run: docker compose run django python src/manage.py test src
