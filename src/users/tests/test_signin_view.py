@@ -5,5 +5,5 @@ from rest_framework.test import APITestCase
 class SignInAPITestCase(APITestCase):
     viewname = "signin"
 
-    def test_no_api_matched_fail(self):
+    def test_matched_viewname(self):
         reverse(self.viewname)
