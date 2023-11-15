@@ -24,3 +24,11 @@ class SignUpAPIView(APIView):
             data=UserSignUpSerializer(user).data,
             status=status.HTTP_201_CREATED,
         )
+
+
+class SignInAPIView(APIView):
+    @swagger_auto_schema(
+        operation_summary="사용자 로그인",
+    )
+    def post(self, request):
+        return
